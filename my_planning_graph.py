@@ -318,7 +318,7 @@ class PlanningGraph():
         # Start new A level - empty
         self.a_levels.append(set())
 
-        # Get the s_level (I don't need to deduct 1 from level index here. Right?)
+        # Get the s_level
         s_level = self.s_levels[level]
 
         # Iterate through all possible actions and add PgNode_as
