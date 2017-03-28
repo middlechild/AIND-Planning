@@ -9,6 +9,9 @@ from lp_utils import (
 )
 from my_planning_graph import PlanningGraph
 
+import logging
+logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
+
 
 class AirCargoProblem(Problem):
     def __init__(self, cargos, planes, airports, initial: FluentState, goal: list):
@@ -198,11 +201,13 @@ class AirCargoProblem(Problem):
         for clause in self.goal:
             if clause not in kb.clauses:
                 return False
+
         return True
 
     def h_1(self, node: Node):
         # note that this is not a true heuristic
         h_const = 1
+
         return h_const
 
     def h_pg_levelsum(self, node: Node):
@@ -215,6 +220,7 @@ class AirCargoProblem(Problem):
         # requires implemented PlanningGraph class
         pg = PlanningGraph(self, node.state)
         pg_levelsum = pg.h_levelsum()
+
         return pg_levelsum
 
     def h_ignore_preconditions(self, node: Node):
@@ -224,9 +230,16 @@ class AirCargoProblem(Problem):
         conditions by ignoring the preconditions required for an action to be
         executed.
         """
-        # TODO implement (see Russell-Norvig Ed-3 10.2.3  or Russell-Norvig Ed-2 11.2)
 
         count = 0
+
+        kb = PropKB()
+        kb.tell(decode_state(node.state, self.state_map).pos_sentence())
+        # logging.info('Goal: %s', self.goal)
+        for clause in self.goal:
+            if clause not in kb.clauses:
+                count += 1
+
         return count
 
 
