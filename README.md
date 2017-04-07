@@ -167,3 +167,6 @@ implemented in the `example_have_cake` module as an example.
 - The `run_search` script is provided for gathering metrics for various search methods on any or all of the problems and should be used for this purpose.
 
 
+## Project Review
+
+[Visit this page to see the final review](https://review.udacity.com/#!/reviews/424788/shared)
