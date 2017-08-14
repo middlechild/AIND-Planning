@@ -1,7 +1,8 @@
 # Artificial Intelligence Nanodegree
 
 This project is from Udacity’s Artificial Intelligence Nanodegree program. It contains code from Udacity as well as my own.
-#
+
+---
 
 # Implement a Planning Search
 
